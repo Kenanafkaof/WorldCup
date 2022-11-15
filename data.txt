@@ -1,0 +1,335 @@
+Training set accuracy  0.580
+Test set accuracy  0.564
+Qatar and Ecuador
+Winner: Qatar chance: 0.670
+Probability of Draw:  0.213
+Probability of Ecuador winning:  0.116
+
+England and Iran
+Winner: Iran chance: 0.159
+Probability of Draw:  0.296
+Probability of Iran winning:  0.545
+
+Senegal and Netherlands
+Winner: Senegal chance: 0.691
+Probability of Draw:  0.219
+Probability of Netherlands winning:  0.091
+
+USA and Wales
+Winner: USA chance: 0.703
+Probability of Draw:  0.172
+Probability of Wales winning:  0.126
+
+Argentina and Saudi Arabia
+Winner: Saudi Arabia chance: 0.146
+Probability of Draw:  0.239
+Probability of Saudi Arabia winning:  0.615
+
+Denmark and Tunisia
+Winner: Denmark chance: 0.378
+Probability of Draw:  0.276
+Probability of Tunisia winning:  0.346
+
+Mexico and Poland
+Winner: Mexico chance: 0.449
+Probability of Draw:  0.305
+Probability of Poland winning:  0.246
+
+France and Australia
+Winner: Australia chance: 0.242
+Probability of Draw:  0.263
+Probability of Australia winning:  0.495
+
+Morocco and Croatia
+Winner: Morocco chance: 0.517
+Probability of Draw:  0.379
+Probability of Croatia winning:  0.104
+
+Germany and Japan
+Winner: Japan chance: 0.158
+Probability of Draw:  0.217
+Probability of Japan winning:  0.625
+
+Spain and Costa Rica
+Winner: Costa Rica chance: 0.147
+Probability of Draw:  0.341
+Probability of Costa Rica winning:  0.512
+
+Belgium and Canada
+Winner: Canada chance: 0.199
+Probability of Draw:  0.201
+Probability of Canada winning:  0.600
+
+Switzerland and Cameroon
+Winner: Switzerland chance: 0.430
+Probability of Draw:  0.306
+Probability of Cameroon winning:  0.264
+
+Uruguay and Korea Republic
+Winner: Korea Republic chance: 0.177
+Probability of Draw:  0.216
+Probability of Korea Republic winning:  0.606
+
+Portugal and Ghana
+Winner: Portugal chance: 0.404
+Probability of Draw:  0.315
+Probability of Ghana winning:  0.282
+
+Brazil and Serbia
+Winner: Serbia chance: 0.210
+Probability of Draw:  0.361
+Probability of Serbia winning:  0.429
+
+Wales and Iran
+Winner: Wales chance: 0.501
+Probability of Draw:  0.252
+Probability of Iran winning:  0.247
+
+Qatar and Senegal
+Winner: Qatar chance: 0.670
+Probability of Draw:  0.226
+Probability of Senegal winning:  0.104
+
+Netherlands and Ecuador
+Winner: Ecuador chance: 0.226
+Probability of Draw:  0.284
+Probability of Ecuador winning:  0.490
+
+England and USA
+Winner: USA chance: 0.085
+Probability of Draw:  0.186
+Probability of USA winning:  0.729
+
+Tunisia and Australia
+Winner: Tunisia chance: 0.501
+Probability of Draw:  0.341
+Probability of Australia winning:  0.158
+
+Poland and Saudi Arabia
+Winner: Saudi Arabia chance: 0.273
+Probability of Draw:  0.270
+Probability of Saudi Arabia winning:  0.457
+
+France and Denmark
+Winner: France chance: 0.390
+Probability of Draw:  0.243
+Probability of Denmark winning:  0.366
+
+Argentina and Mexico
+Winner: Mexico chance: 0.322
+Probability of Draw:  0.311
+Probability of Mexico winning:  0.367
+
+Japan and Costa Rica
+Winner: Japan chance: 0.502
+Probability of Draw:  0.269
+Probability of Costa Rica winning:  0.229
+
+Belgium and Morocco
+Winner: Belgium chance: 0.394
+Probability of Draw:  0.298
+Probability of Morocco winning:  0.307
+
+Croatia and Canada
+Winner: Canada chance: 0.140
+Probability of Draw:  0.207
+Probability of Canada winning:  0.653
+
+Spain and Germany
+Winner: Spain chance: 0.414
+Probability of Draw:  0.302
+Probability of Germany winning:  0.284
+
+Cameroon and Serbia
+Winner: Cameroon chance: 0.458
+Probability of Draw:  0.430
+Probability of Serbia winning:  0.112
+
+Korea Republic and Ghana
+Winner: Korea Republic chance: 0.743
+Probability of Draw:  0.173
+Probability of Ghana winning:  0.084
+
+Brazil and Switzerland
+Winner: Switzerland chance: 0.211
+Probability of Draw:  0.229
+Probability of Switzerland winning:  0.560
+
+Portugal and Uruguay
+Winner: Portugal chance: 0.564
+Probability of Draw:  0.273
+Probability of Uruguay winning:  0.163
+
+Ecuador and Senegal
+Winner: Ecuador chance: 0.530
+Probability of Draw:  0.306
+Probability of Senegal winning:  0.165
+
+Netherlands and Qatar
+Winner: Qatar chance: 0.094
+Probability of Draw:  0.176
+Probability of Qatar winning:  0.730
+
+Wales and England
+Winner: Wales chance: 0.741
+Probability of Draw:  0.157
+Probability of England winning:  0.102
+
+Iran and USA
+Winner: USA chance: 0.286
+Probability of Draw:  0.275
+Probability of USA winning:  0.439
+
+Australia and Denmark
+Winner: Australia chance: 0.597
+Probability of Draw:  0.209
+Probability of Denmark winning:  0.195
+
+Tunisia and France
+Winner: Tunisia chance: 0.704
+Probability of Draw:  0.227
+Probability of France winning:  0.069
+
+Poland and Argentina
+Winner: Poland chance: 0.694
+Probability of Draw:  0.212
+Probability of Argentina winning:  0.094
+
+Saudi Arabia and Mexico
+Winner: Saudi Arabia chance: 0.751
+Probability of Draw:  0.161
+Probability of Mexico winning:  0.088
+
+Croatia and Belgium
+Winner: Croatia chance: 0.480
+Probability of Draw:  0.236
+Probability of Belgium winning:  0.284
+
+Canada and Morocco
+Winner: Canada chance: 0.665
+Probability of Draw:  0.207
+Probability of Morocco winning:  0.129
+
+Japan and Spain
+Winner: Japan chance: 0.828
+Probability of Draw:  0.108
+Probability of Spain winning:  0.064
+
+Costa Rica and Germany
+Winner: Costa Rica chance: 0.779
+Probability of Draw:  0.168
+Probability of Germany winning:  0.053
+
+Ghana and Uruguay
+Winner: Ghana chance: 0.682
+Probability of Draw:  0.240
+Probability of Uruguay winning:  0.079
+
+Korea Republic and Portugal
+Winner: Korea Republic chance: 0.826
+Probability of Draw:  0.130
+Probability of Portugal winning:  0.044
+
+Serbia and Switzerland
+Winner: Serbia chance: 0.492
+Probability of Draw:  0.202
+Probability of Switzerland winning:  0.307
+
+Cameroon and Brazil
+Winner: Cameroon chance: 0.790
+Probability of Draw:  0.171
+Probability of Brazil winning:  0.039
+
+Qatar and Iran
+Winner: Qatar
+Probability of Qatar winning:  0.671
+Probability of Draw:  0.222
+Probaility of Iran winning:  0.107
+
+Senegal and USA
+Winner: Senegal
+Probability of Senegal winning:  0.376
+Probability of Draw:  0.266
+Probaility of USA winning:  0.358
+
+Saudi Arabia and Denmark
+Winner: Saudi Arabia
+Probability of Saudi Arabia winning:  0.775
+Probability of Draw:  0.133
+Probaility of Denmark winning:  0.092
+
+Mexico and Australia
+Winner: Mexico
+Probability of Mexico winning:  0.377
+Probability of Draw:  0.309
+Probaility of Australia winning:  0.314
+
+Morocco and Japan
+Draw
+Probability of Morocco winning:  0.385
+Probability of Draw:  0.393
+Probaility of Japan winning:  0.221
+
+Costa Rica and Canada
+Winner: Costa Rica
+Probability of Costa Rica winning:  0.417
+Probability of Draw:  0.249
+Probaility of Canada winning:  0.333
+
+Switzerland and Korea Republic
+Winner: Korea Republic
+Probability of Switzerland winning:  0.272
+Probability of Draw:  0.249
+Probaility of Korea Republic winning:  0.479
+
+Portugal and Serbia
+Winner: Portugal
+Probability of Portugal winning:  0.397
+Probability of Draw:  0.361
+Probaility of Serbia winning:  0.242
+
+Quarters results:
+Qatar and Senegal
+Winner: Qatar
+Probability of Qatar winning:  0.670
+Probability of Draw:  0.226
+Probaility of Senegal winning:  0.104
+
+Saudi Arabia and Mexico
+Winner: Saudi Arabia
+Probability of Saudi Arabia winning:  0.751
+Probability of Draw:  0.161
+Probaility of Mexico winning:  0.088
+
+Morocco and Costa Rica
+Draw
+Probability of Morocco winning:  0.337
+Probability of Draw:  0.459
+Probaility of Costa Rica winning:  0.204
+
+Korea Republic and Portugal
+Winner: Korea Republic
+Probability of Korea Republic winning:  0.826
+Probability of Draw:  0.130
+Probaility of Portugal winning:  0.044
+
+Semi results:
+[('Qatar', 'Saudi Arabia'), ('Morocco', 'Korea Republic')]
+Qatar and Saudi Arabia
+Winner: Qatar
+Probability of Qatar winning:  0.604
+Probability of Draw:  0.219
+Probaility of Saudi Arabia winning:  0.177
+
+Morocco and Korea Republic
+Draw
+Probability of Morocco winning:  0.290
+Probability of Draw:  0.372
+Probaility of Korea Republic winning:  0.338
+
+Final result:
+Qatar and Korea Republic
+Winner: Qatar
+Probability of Qatar winning:  0.556
+Probability of Draw:  0.219
+Probaility of Korea Republic winning:  0.225
