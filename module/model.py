@@ -2,8 +2,11 @@ import numpy as np
 import pandas as pd
 import matplotlib as plt
 import sklearn
+import csv
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
+from scipy.stats import linregress
+
 from warnings import simplefilter
 simplefilter(action="ignore", category=pd.errors.PerformanceWarning)
 
@@ -67,13 +70,14 @@ class HistoricData:
         y = y.astype('int')
 
         # Separate train and test sets
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=42)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
         final.head()
-        logreg = LogisticRegression()
+        logreg = LogisticRegression(solver='lbfgs', max_iter=45000)
         logreg.fit(X_train, y_train)
         score = logreg.score(X_train, y_train)
         score2 = logreg.score(X_test, y_test)
+
 
         print('Training set accuracy ', '%.3f'%(score))
         print('Test set accuracy ', '%.3f'%(score2))
@@ -83,7 +87,6 @@ class HistoricData:
     def get_fixtures(self, final):
         fixtures = pd.read_csv('dependencies/fixtures.csv')
         ranking = pd.read_csv('dependencies/fifa_rankings.csv', encoding = 'latin-1')
-
         # List for storing the group stage games
         pred_set = []
 
@@ -154,14 +157,18 @@ class HistoricData:
         return group_finals
 
     def clean_and_predict(self, matches, final, logreg): 
-        ranking = pd.read_csv('dependencies/fifa_rankings.csv', encoding = 'latin-1')   
+        ranking = pd.read_csv('dependencies/fifa_rankings.csv', encoding = 'latin-1')  
+        ranking.set_index('Team')['Position']
+        new_set = pd.DataFrame(ranking)
         #Initialization of auxiliary list for data cleaning
         positions = []
 
-        #Loop to retrieve each team's position according to FIFA ranking
         for match in matches:
-            positions.append(ranking.loc[ranking['Team'] == match[0], 'Position'].tolist())
-            positions.append(ranking.loc[ranking['Team'] == match[1], 'Position'].tolist())
+            positions.append(new_set[new_set['Team']==match[0]].squeeze()['Position'])
+            positions.append(new_set[new_set['Team']==match[1]].squeeze()['Position'])
+
+        for row in matches:
+            positions.append
 
         #Creating the DataFrame for prediction
         pred_set = []
@@ -176,7 +183,7 @@ class HistoricData:
             dict1 = {}
 
             # if position of first team is better, he will be the 'home' team, and vice-versa
-            if positions[i] < positions[i + 1]:
+            if positions[i] > positions[i + 1]:
                 dict1.update({'home_team': matches[j][0], 'away_team': matches[j][1]})
             else:
                 dict1.update({'home_team': matches[j][1], 'away_team': matches[j][0]})

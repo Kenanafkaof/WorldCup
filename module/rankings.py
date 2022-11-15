@@ -22,14 +22,14 @@ class GetRankings:
         header = soup.find_all("td")
         teams = soup.find_all("td", class_="text team")
         score = soup.find_all("td", class_="points")
-        for team, scores in zip(teams, score):
-            data_append = team.get_text(), scores.get_text()
-            print(data_append)
+        rank = soup.find_all("td", class_="rank")
+        for ranking, team, scores in zip(rank, teams, score):
+            data_append = ranking.get_text(), team.get_text(), round(float(scores.get_text()))
             rankings.append(data_append)
         return rankings
 
     def write_file(self, rankings):
-        header = ['Team', 'Position']
+        header = ['Position', 'Team', 'Points']
         with open('dependencies/fifa_rankings.csv', 'w', newline='') as outcsv:
             writer = csv.writer(outcsv, delimiter=',')
             writer.writerow(i for i in header)
