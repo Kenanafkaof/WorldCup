@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": "../../NewsScraper"
+		},
+		{
+			"path": "../../../my-app"
+		},
+		{
+			"path": "../../../kenan_photography_site"
+		},
+		{
+			"path": "../../../trump-site"
+		},
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../antibot"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "antibot"
+	}
+}

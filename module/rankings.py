@@ -19,7 +19,6 @@ class GetRankings:
     def parse_content(self, response):
         soup = BeautifulSoup(response.content, 'html.parser')
         rankings = []
-        header = soup.find_all("td")
         teams = soup.find_all("td", class_="text team")
         score = soup.find_all("td", class_="points")
         rank = soup.find_all("td", class_="rank")
