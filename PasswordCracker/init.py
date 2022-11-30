@@ -33,6 +33,9 @@ class Runtime:
         self.index = index
         self.thread_queue = Queue()
 
+    def brute_force(self):
+        function_init = md5(self.password, self.index, self.task_id, self.start_time).brute_force()
+
     def thread_password(self, queue):
         threads = []
         function_init = md5(self.password, self.index, self.task_id, self.start_time)
@@ -112,14 +115,15 @@ class Runtime:
         queue_initial.task_done()
 
     def thread(self, queue_initial):
-        t = Thread(target=Runtime.thread_password, args=(self, self.thread_queue))
-        t1 = Thread(target=Runtime.log, args=(self, self.thread_queue))
-        t.daemon = True
-        t1.daemon = True
-        t.start()
-        t1.start()
-        self.thread_queue.put(t)
-        self.thread_queue.put(t1)
-        self.thread_queue.join()
-        queue_initial.get()
-        queue_initial.task_done()
+        for i in range(self.threads):
+            t = Thread(target=Runtime.brute_force, args=(self))
+            t1 = Thread(target=Runtime.log, args=(self, self.thread_queue))
+            t.daemon = True
+            t1.daemon = True
+            t.start()
+            t1.start()
+            self.thread_queue.put(t)
+            self.thread_queue.put(t1)
+            self.thread_queue.join()
+            queue_initial.get()
+            queue_initial.task_done()
