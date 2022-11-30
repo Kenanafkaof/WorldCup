@@ -6,11 +6,11 @@ from logger import Logger
 import uuid
 
 def main():
-    index = 0 
+    index = 4
     Logger("Password Cracker Notification", "Initializing password cracker...").info()
     task_id = str(uuid.uuid4())[:8]
     thread_queue = Queue()
-    task = Runtime(passwords_hashed[index], index, task_id, threads=2)
+    task = Runtime(passwords_hashed[index], index, task_id, threads=6)
     t = Thread(target=task.thread, args=(thread_queue,))
     t.daemon = True
     t.start()
