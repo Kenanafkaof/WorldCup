@@ -29,6 +29,7 @@ def model():
     returned_data = model.get_data()
     groups = model.train_data(returned_data)
     top_16 = model.get_fixtures(groups)
+    print("Round of 16")
     teams_retrieved = model.move_on_structure(top_16[0], 3)
     quarters = model.clean_and_predict(teams_retrieved, groups[0], groups[1])
     quarters_teams = model.move_on_structure(quarters, 1)
