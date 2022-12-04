@@ -158,6 +158,18 @@
 
 
 /* CSS for Modal */
+.modal-content {
+    overflow: scroll;
+    height: 95vh;
+}
+
+.modal{
+    display: block !important; /* I added this to see the modal, you don't need this */
+}
+
+.modal-body{
+    overflow-y: scroll;
+}
 .modal-body {
     display: flex;
     flex-direction: column;
