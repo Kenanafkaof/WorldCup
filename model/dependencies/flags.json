@@ -1,0 +1,130 @@
+[
+    {
+        "country": "Qatar",
+        "image": "qa"
+    },
+    {
+        "country": "Ecuador",
+        "image": "ec"
+    },
+    {
+        "country": "Senegal",
+        "image": "sn"
+    },
+    {
+        "country": "Netherlands",
+        "image": "nl"
+    },
+    {
+        "country": "England",
+        "image": "GB-ENG"
+    },
+    {
+        "country": "Iran",
+        "image": "ir"
+    },
+    {
+        "country": "USA",
+        "image": "usa"
+    },
+    {
+        "country": "Wales",
+        "image": "GB-WLS"
+    },
+    {
+        "country": "Argentina",
+        "image": "AR"
+    },
+    {
+        "country": "Saudi Arabia",
+        "image": "SA"
+    },
+    {
+        "country": "Mexico",
+        "image": "MX"
+    },
+    {
+        "country": "Poland",
+        "image": "PL"
+    },
+    {
+        "country": "France",
+        "image": "FR"
+    },
+    {
+        "country": "Tunisia",
+        "image": "TN"
+    },
+    {
+        "country": "Australia",
+        "image": "AU"
+    },
+    {
+        "country": "Denmark",
+        "image": "DK"
+    },
+    {
+        "country": "Spain",
+        "image": "ES"
+    },
+    {
+        "country": "Costa Rica",
+        "image": "CR"
+    },
+    {
+        "country": "Germany",
+        "image": "DE"
+    },
+    {
+        "country": "Japan",
+        "image": "JP"
+    },
+    {
+        "country": "Belgium",
+        "image": "BE"
+    },
+    {
+        "country": "Canada",
+        "image": "CA"
+    },
+    {
+        "country": "Morocco",
+        "image": "MA"
+    },
+    {
+        "country": "Croatia",
+        "image": "HR"
+    },
+    {
+        "country": "Brazil",
+        "image": "BR"
+    },
+    {
+        "country": "Serbia",
+        "image": "RS"
+    },
+    {
+        "country": "Switzerland",
+        "image": "CH"
+    },
+    {
+        "country": "Cameroon",
+        "image": "CM"
+    },
+    {
+        "country": "Portugal",
+        "image": "PT"
+    },
+    {
+        "country": "Ghana",
+        "image": "GH"
+    },
+    {
+        "country": "Uruguay",
+        "image": "UY"
+    },
+    {
+        "country": "Kore Republic",
+        "image": "KR"
+    }
+]

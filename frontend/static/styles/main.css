@@ -1,0 +1,22 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.main-title-all {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 4vmax;
+    font-weight: 800;
+    background: -webkit-linear-gradient(
+        right,  
+        #052789,
+        #1077C3
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
+}

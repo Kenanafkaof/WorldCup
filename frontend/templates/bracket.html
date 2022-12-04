@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}" >
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/bracket.css') }}" >
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/search.css') }}" >
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="../static/js/router.js"></script>
+    <title>Bracket</title>
+</head>
+<body>
+    <div class="main-title-all" onclick="backHome()">World Cup Predictions</div>
+    <div class="search-wrapper">
+        <form action="/search" method="POST">
+            <input type="text" name="team" class="search-bar" placeholder="Search team...">
+            <input type="submit" class="search-submit" placeholder="Search">
+        </form>
+    </div>
+    <div class="round-wrapper">
+        <div class="group-title header">Round 16</div>
+        <div class="bracket-wrapper">
+            {% for val in round16 %}
+                <div class="bracket-groupped">
+                    <div class="bracket-teams">
+                        <div class="home-team team" onclick="getStats('{{ val[0] }}')">
+                            <div class="team-flag"><img src="./static/assets/{{ val[1] }}.png" class="bracket-image" alt=""></div>
+                            <div class="team-name" id="team">{{ val[0] }}</div>
+                        </div>
+                        <div class="away-team team" onclick="getStats('{{ val[2] }}')">
+                            <div class="team-flag"><img src="./static/assets/{{ val[3] }}.png" class="bracket-image" alt=""></div>
+                            <div class="team-name">{{ val[2] }}</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+  
+    </div>
+    
+    <div class="round-wrapper">
+        <div class="quarters-title header">Quarter Finals</div>
+        <div class="bracket-wrapper">
+            {% for val in quarters %}
+                <div class="bracket-groupped">
+                    <div class="bracket-teams">
+                        <div class="home-team team" onclick="getStats('{{ val[0] }}')">
+                            <div class="team-flag"><img src="./static/assets/{{ val[1] }}.png" class="bracket-image" alt=""></div>
+                            <div class="team-name">{{ val[0] }}</div>
+                        </div>
+                        <div class="away-team team" onclick="getStats('{{ val[2] }}')">
+                            <div class="team-flag"><img src="./static/assets/{{ val[3] }}.png" class="bracket-image" alt=""></div>
+                            <div class="team-name">{{ val[2] }}</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+    </div>
+        
+    <div class="round-wrapper">
+        <div class="semis-title header">Semi Finals</div>
+        <div class="bracket-wrapper">
+            {% for val in semis %}
+                <div class="bracket-groupped">
+                    <div class="bracket-teams">
+                        <div class="home-team team" onclick="getStats('{{ val[0] }}')">
+                            <div class="team-flag"><img src="./static/assets/{{ val[1] }}.png" class="bracket-image" alt=""></div>
+                            <div class="team-name">{{ val[0] }}</div>
+                        </div>
+                        <div class="away-team team" onclick="getStats('{{ val[2] }}')">
+                            <div class="team-flag"><img src="./static/assets/{{ val[3] }}.png" class="bracket-image" alt=""></div>
+                            <div class="team-name">{{ val[2] }}</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+    </div>
+        
+    <div class="round-wrapper">
+        <div class="finals-title header">Final</div>
+        <div class="bracket-wrapper">
+            {% for val in final %}
+                <div class="bracket-groupped">
+                    <div class="bracket-teams">
+                        <div class="home-team team" onclick="getStats('{{ val[0] }}')">
+                            <div class="team-flag"><img src="./static/assets/{{ val[1] }}.png" class="bracket-image" alt=""></div>
+                            <div class="team-name">{{ val[0] }}</div>
+                        </div>
+                        <div class="away-team team" onclick="getStats('{{ val[2] }}')">
+                            <div class="team-flag"><img src="./static/assets/{{ val[3] }}.png" class="bracket-image" alt=""></div>
+                            <div class="team-name">{{ val[2] }}</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% if modal %}
+        <div class="modal show" id="standings-modal" role="dialog">
+            <div class="modal-dialog">
+            
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" onclick="hideModal()">&times;</button>
+                <div class="modal-title">
+                    <div class="team-image"><img src="./static/assets/{{ team_data[0][2] }}.png" class="bracket-image" alt=""></div>
+                    <div class="modal-title-team">{{ team }}</div>
+                </div>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-round-title">Victories</div>
+                    {% for team in team_data %}
+                        <div class="team-fixture">
+                            <div class="match-teams">
+                                <div class="team-first">
+                                    <div class="inside-flag"><img src="./static/assets/{{ team[2] }}.png" class="modal-image" alt=""></div>
+                                    <div class="fixture first-fixture">
+                                        {{ team[0] }}
+                                    </div>
+                                    <div class="team-first-probability probability">{{ team[1]}}</div>
+                                </div>
+                                <div class="team-second">
+                                    <div class="inside-flag"><img src="./static/assets/{{ team[5] }}.png" class="modal-image" alt=""></div>
+                                    <div class="fixture second-fixture">{{ team[3]}}</div>
+                                    <div class="team-second-probability probability">{{ team[4] }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="modal-round-title">Defeats</div>
+                    {% for team in loss_data %}
+                        <div class="team-fixture">
+                            <div class="match-teams">
+                                <div class="team-first">
+                                    <div class="inside-flag"><img src="./static/assets/{{ team[2] }}.png" class="modal-image" alt=""></div>
+                                    <div class="fixture first-fixture">
+                                        {{ team[0] }}
+                                    </div>
+                                    <div class="team-first-probability probability">{{ team[1]}}</div>
+                                </div>
+                                <div class="team-second">
+                                    <div class="inside-flag"><img src="./static/assets/{{ team[5] }}.png" class="modal-image" alt=""></div>
+                                    <div class="fixture second-fixture">{{ team[3]}}</div>
+                                    <div class="team-second-probability probability">{{ team[4] }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="hideModal()">Close</button>
+                </div>
+            </div>
+            
+            </div>
+        </div>
+    {% endif %}
+</body>
+</html>

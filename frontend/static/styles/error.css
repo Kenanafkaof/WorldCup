@@ -1,0 +1,24 @@
+.error-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+.error {
+    width: 80%;
+    margin: auto;
+}
+
+.main-error {
+    font-size: 5vmax;
+    color: darkred;
+    font-weight: 800;
+}
+
+.subtitle {
+    padding-top: 2rem;
+    font-size: 3vmax;
+    font-weight: 600;
+}

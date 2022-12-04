@@ -1,0 +1,220 @@
+
+
+
+.round-wrapper {
+    padding: 2rem;
+}
+.bracket-wrapper {
+    display:grid;
+    padding-top: 1rem;
+    grid-template-columns: auto auto;
+    grid-row: auto auto;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    grid-gap: 3rem;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    font-size: 2.5vmax;
+}
+
+.quarters-title {
+    font-weight: 800;
+    margin: auto;
+    text-transform: uppercase;
+    text-align: center;
+    background: -webkit-linear-gradient(right,  #56042C, #1077C3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.first-fixture {
+    background: -webkit-linear-gradient(
+        right,  
+        #80D0C7,
+        #0093E9
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+}
+
+.second-fixture {
+    background: -webkit-linear-gradient(
+        right,  
+        #FC5C7D,
+        #6A82FB
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+}
+
+.modal-round-title {
+    font-size: 2vmax;
+    font-weight: 800;
+    margin: auto;
+    text-transform: uppercase;
+    text-align: center;
+    background: -webkit-linear-gradient(right,  #56042C, #1077C3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-top: 3rem;
+}
+
+.semis-title {
+    font-weight: 800;
+    margin: auto;
+    text-transform: uppercase;
+    text-align: center;
+    background: -webkit-linear-gradient(right,  #49BCE3, #FEC310);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.finals-title {
+    font-weight: 800;
+    margin: auto;
+    text-transform: uppercase;
+    text-align: center;
+    background: -webkit-linear-gradient(right,  #56042C, #FEC310);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.group-title {
+    font-size: 40px;
+    font-weight: 800;
+    margin: auto;
+    text-transform: uppercase;
+    text-align: center;
+    background: -webkit-linear-gradient(right, #1077C3, #49BCE3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bracket-groupped {
+    display: flex;
+}
+.bracket-teams {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    border: 2px solid rgba(0, 0, 0, 0.6);
+    width: 17vmax;
+    margin: auto;
+    padding: .5rem 1rem .5rem 1rem;
+    border-radius: 10px;
+    transition: ease-in-out .1s all;
+    cursor: default;
+}
+.team:hover > .team-name {
+    background: -webkit-linear-gradient(right,  #56042C, #1077C3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.team:hover {
+    transform: scale(1.05);
+}
+
+.bracket-teams:hover {
+    background-color: rgba(0, 0, 0, 0.09);
+}
+
+.team {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 1rem;
+    height: 100%;
+    cursor: pointer;
+    transition: ease-in-out .3s;
+}
+
+.bracket-image {
+    object-fit: cover;
+    width: 5vmax;
+    height: 2.8vmax;
+    border-radius: 5px;
+}
+.team-name {
+    font-size: 1.5vmax;
+    padding-left: .7rem;
+    font-weight: 600;
+}
+
+
+
+
+
+
+
+
+
+
+/* CSS for Modal */
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    grid-gap: 1rem;
+}
+.modal-title {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: auto;
+    gap: 2rem;
+    font-size: 2vmax;
+    font-weight: 700;
+}
+.modal-title-team {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.match-teams {
+    display: flex;
+    gap: 2rem;
+}
+
+.team-fixture {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    justify-content: center;
+    align-items: center;
+}
+.probability {
+    display: flex;
+    justify-content: center;
+    font-size: 1.6vmax;
+    font-weight: 600;
+}
+.fixture {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.8vmax;
+    font-weight: 600;
+    gap: 2rem;
+}
+
+.modal-image {
+    width: 3.5vmax;
+    height: 2.5vmax;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.inside-flag {
+    display: flex;
+    justify-content: center;
+}

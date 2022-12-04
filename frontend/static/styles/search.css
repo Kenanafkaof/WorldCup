@@ -1,0 +1,69 @@
+.team-name-header {
+    text-align: center;
+    font-size: 4vmax;
+    font-weight: 600;
+    background: -webkit-linear-gradient(left,  #49BCE3, #1077C3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.players-list-wrapper {
+    padding-top: 2rem;
+    width: 100%;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+li {
+    align-items: center;
+    font-size: 1.5vmax;
+}
+.player {
+    display: flex;
+
+    font-size: 1.5vmax;
+    font-weight: 600;
+}
+
+.search-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3rem;
+    width: 100%;
+
+}
+
+input {
+    display: inline-block;
+    border-radius: 0;
+    -webkit-appearance: none;
+    -moz-box-sizing: content-box; /* or `border-box` */
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    padding: 1rem 2rem 1rem 2rem;
+}
+
+.search-submit {
+    height: 100%;
+    border: none;
+    outline: none;
+    font-weight: 600;
+    border-radius: 5px;
+    background-image: linear-gradient(to right bottom, #49bce3, #2fabdd, #169ad6, #0489cd, #1077c3);
+    background: -webkit-linear-gradient(right,  #56042C, #1077C3);
+    color: white;
+    transition: ease-in-out .2s all;
+}
+.search-submit:hover {
+    transform: scale(1.02);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.search-bar {
+    border-radius: 5px;
+    text-indent: 1rem;
+    outline: none;
+    width: 50vmax;
+}

@@ -6,7 +6,7 @@ import csv
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from scipy.stats import linregress
-
+from module.conversion import Database
 from warnings import simplefilter
 simplefilter(action="ignore", category=pd.errors.PerformanceWarning)
 
@@ -137,15 +137,17 @@ class HistoricData:
             print('Probability of Draw: ', '%.3f'%(final[1].predict_proba(pred_set)[i][1]))
             print('Probability of ' + backup_pred_set.iloc[i,1] + ' winning: ', '%.3f'%(final[1].predict_proba(pred_set)[i][1]))
             print('')
+            Database().insert_probability(backup_pred_set.iloc[i,0], '%.3f'%(final[1].predict_proba(pred_set)[i][2]), backup_pred_set.iloc[i, 1], '%.3f'%(final[1].predict_proba(pred_set)[i][1]))
         return winners, ranking
     
-    def move_on_structure(self, winners, divide):
+    def move_on_structure(self, winners, divide, table):
         group_finals = []
         k = 0
         l = 1
         data = len(winners)/divide
         for nation in range(int(data)):
             try:
+                Database().insert_fixtures(winners[k], winners[l], table)
                 together_group = winners[k], winners[l]
                 group_finals.append(together_group)
                 l += 2
@@ -232,5 +234,6 @@ class HistoricData:
             print('Probability of Draw: ', '%.3f'%(logreg.predict_proba(pred_set)[i][1]))
             print('Probaility of ' + backup_pred_set.iloc[i, 0] + ' winning: ', '%.3f'%(logreg.predict_proba(pred_set)[i][0]))
             print('')
+            Database().insert_probability(backup_pred_set.iloc[i,1], '%.3f'%(logreg.predict_proba(pred_set)[i][2]), backup_pred_set.iloc[i, 0], '%.3f'%(logreg.predict_proba(pred_set)[i][0]))
         
         return winners
