@@ -234,3 +234,35 @@ class Database:
         Database.show_tables(self)
         #Database.convert_csv(self)
 
+class Login:
+    def __init__(self):
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        db_dir = (BASE_DIR + '\\worldcup.db')
+        self.conn = sl.connect(db_dir, check_same_thread=False)
+        self.curs = self.conn.cursor()
+
+    def login_create(self):
+        self.curs.execute('DROP TABLE IF EXISTS login')
+        self.curs.execute('CREATE TABLE IF NOT EXISTS '
+                    'authentication (`email` text, `username` text, `password` text)')
+        self.conn.commit()
+
+    def create_user(self, email, username, password):
+        results = self.curs.execute("SELECT * FROM authentication WHERE email = ?", (email,)) 
+        for query_result in results.fetchall() :
+            if email in query_result:
+                return True
+            else:
+                sql = "INSERT INTO authentication (email, username, password) VALUES (?, ?, ?)" 
+                sql_add = (email, username, password)
+                res = self.curs.execute(sql, sql_add)
+                self.conn.commit() 
+                return False
+
+    def remove_user(self, email):
+        results = self.curs.execute("DELETE FROM authentication WHERE email = ?", (email,)) 
+
+
+    def login_authentication(self, username, password):
+        #dfasdf
+        print('something')

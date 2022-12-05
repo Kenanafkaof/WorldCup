@@ -1,7 +1,7 @@
-from module.conversion import Database
+from module.conversion import Database, Login
 import sqlite3 as sl
 
-data = Database().create_group()
+#data = Database().create_group()
 
 def clear_data():
     db = Database()
@@ -10,5 +10,7 @@ def clear_data():
     db.clear_semis()
     db.clear_final()
 
-Database().clear_model()
-clear_data()
+#Database().clear_model()
+#clear_data()
+
+Login().login_create()

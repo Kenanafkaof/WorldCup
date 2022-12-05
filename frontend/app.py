@@ -1,3 +1,4 @@
+import flask
 from flask import Flask, redirect, Response, make_response, render_template, request, session, url_for
 from flask_cors import CORS, cross_origin
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
@@ -58,9 +59,12 @@ def teams():
     team = args.get('t')
     return render_template("bracket.html", round16=db.show_data(), quarters=db.show_quarters(), semis=db.show_semis(), final=db.show_finals(), team_data = db.get_victories(team), loss_data=db.get_losses(team), modal=True, team=team, figure=figure)
 
-@app.route("/search" , methods=['POST'])
+@app.route("/search" , methods=['GET', 'POST'])
 def search():
-    team = request.form.get('team').capitalize()
+    if flask.request.method == 'POST':
+        team = request.form.get('team').capitalize()
+    elif flask.request.method == 'GET':
+        team = request.args.get('team')
     valid = db.validate_query(team)
 
     def combine(team_data, loss_data):
@@ -94,8 +98,7 @@ def search():
         fig.savefig(buf, format="png")
         data = base64.b64encode(buf.getbuffer()).decode("ascii")
         return f"data:image/png;base64,{data}"
-
-    if valid is True:
+    def render_data():
         team_data = db.get_victories(team), 
         loss_data=db.get_losses(team)
         data = combine(team_data, loss_data)
@@ -112,7 +115,10 @@ def search():
             ranking=db.get_standing(team),
             figure = figure
         )
-    return render_template("error.html")
+    if valid is True:
+        render_data()
+    else:
+        return render_template("error.html")
 
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)
