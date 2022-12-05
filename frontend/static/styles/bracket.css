@@ -87,7 +87,6 @@
 
 
 .group-title {
-    font-size: 40px;
     font-weight: 800;
     margin: auto;
     text-transform: uppercase;
@@ -160,7 +159,7 @@
 /* CSS for Modal */
 .modal-content {
     overflow: scroll;
-    height: 95vh;
+    max-height: 95vh;
 }
 
 .modal{

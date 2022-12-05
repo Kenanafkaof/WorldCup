@@ -6,6 +6,14 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+.figure-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
 .players-list-wrapper {
     padding-top: 2rem;
     width: 100%;

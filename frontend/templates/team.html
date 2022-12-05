@@ -26,6 +26,9 @@
         </form>
     </div>
     <h1 class="team-name-header">{{ team }} - {{ ranking[0][1] }}</h1>
+    <div class="figure-wrapper">
+        <img src="{{ figure }}" alt="my plot">
+    </div>
     <div class="modal-round-title">Victories</div>
         {% for team in team_data %}
             <div class="team-fixture">
@@ -76,6 +79,7 @@
                 {% endfor %}
             </ol>
         </div>
+
         
     </div>
 </body>

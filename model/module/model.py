@@ -1,8 +1,6 @@
 import numpy as np
 import pandas as pd
 import matplotlib as plt
-import sklearn
-import csv
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from scipy.stats import linregress

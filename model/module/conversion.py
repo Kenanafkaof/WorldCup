@@ -2,7 +2,7 @@ import sqlite3 as sl
 import pandas as pd
 import json
 import os.path
-
+import csv    
 
 
 class Database:
@@ -93,7 +93,7 @@ class Database:
     def model_create(self):
         self.curs.execute('DROP TABLE IF EXISTS round16')
         self.curs.execute('CREATE TABLE IF NOT EXISTS '
-                    'rankings (`team` text, `position` text)')
+                    'cups (`team` text, `count` text)')
         self.conn.commit()
 
     def convert_intial(self):
@@ -164,6 +164,11 @@ class Database:
         team_data = self.curs.execute("SELECT * FROM rankings WHERE team = ?", (team,))
         result = team_data.fetchall()
         return result
+
+    def get_cups(self):
+        team_data = self.curs.execute("SELECT * FROM cups")
+        result = team_data.fetchall()
+        return result
     
     def validate_query(self, team):
         team_data = self.curs.execute("SELECT * FROM model WHERE winner = ? or loser = ?", (team, team,))
@@ -173,7 +178,6 @@ class Database:
         return False
 
     def parse_csv(self):
-        import csv    
         with open("dependencies/fifa_rankings.csv", 'r', encoding="utf8") as infile:
             reader = csv.DictReader(infile)
             #fieldnames = reader.fieldnames
@@ -184,6 +188,47 @@ class Database:
                 self.conn.commit()
                 #print(row)  # e.g. `['foo', 'bar']`
 
+    def parse_players(self):
+        with open("dependencies/players.csv", 'r', encoding="utf8") as infile:
+            reader = csv.DictReader(infile)
+            for row in reader:
+                squad = row['Squad'].replace("2022 ", "")
+                sql = "INSERT INTO players (team, player, position) VALUES (?, ?, ?)"      
+                sql_add = (squad, row['Player'], row['Pos'])
+                res = self.curs.execute(sql, sql_add)
+                self.conn.commit()
+
+    def parse_world_cups(self):
+        with open("dependencies/WorldCups.csv", 'r', encoding="utf8") as infile:
+            reader = csv.DictReader(infile)
+            world_cup_count = []
+            for row in reader:
+                #squad = row['Squad'].replace("2022 ", "")
+                #sql = "INSERT INTO players (team, player, position) VALUES (?, ?, ?)"      
+                #sql_add = (squad, row['Player'], row['Pos'])
+                #res = self.curs.execute(sql, sql_add)
+                #self.conn.commit()
+                winner = row['Winner']
+                if winner == "Germany FR":
+                    winner = winner.replace(" FR", "")
+                to_append = {
+                    "winner": winner,
+                    "count": 0
+                }
+                world_cup_count.append(winner)
+                #print(row)
+            count_dictionary = []
+            for team in world_cup_count:
+                count = world_cup_count.count(team)
+                data = {
+                    "team": team,
+                    "count": count
+                }
+                if data not in count_dictionary:
+                    sql = "INSERT INTO cups (team, count) VALUES (?, ?)"      
+                    sql_add = (team, count)
+                    res = self.curs.execute(sql, sql_add)
+                    self.conn.commit()  
     def main(self):
         #Database.create_database(self)
         Database.show_tables(self)
