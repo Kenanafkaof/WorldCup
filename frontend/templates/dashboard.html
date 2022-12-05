@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}" >
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboard.css') }}" >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="../static/js/router.js"></script>
+    <title>Dashboard</title>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="dashboard-wrapper">
+        <div class="dashboard-title">
+            <h1 class="gradient-title">Welcome USER!</h1>
+        </div>
+        <div class="client-wrapper">
+            <div class="user">
+                <div class="user-details">
+                        <img src="./static/assets/BR.png" alt="flag" class="country-flag">
+                    <div class="center-team">
+                        <h2 class="favorite-team">You think <span class="team">Brazil</span> will win!</h2>
+                    </div>
+                </div>
+                <div class="user-player">
+                    <img src="./static/assets/players.jpeg" alt="player" class="players-image">
+                    <div class="center-player">
+                        <h2 class="favorite-player">
+                            Your favorite player<br>
+                            <span class="player">Tomas Muller</span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="update-information">
+                <h2 class="update">Update Information?</h2>
+                <div class="user-forms">
+                    <div class="team-form">
+                        <div class="form-subheader">Change Teams?</div>
+                        <form action="/updateteam">
+                            <div class="form-update">
+                                <input type="text" placeholder="Change team" class="change-team user-input">
+                                <input type="submit" value="Update" class="update-button">
+                            </div>
+                        </form>
+                    </div>
+                   
+                    <div class="player-form">
+                        <div class="form-subheader">Change Player?</div>
+                        <form action="/updateteam">
+                            <div class="player-update">
+                                <select name="player-update" id="player-change">
+                                    <option value="Thomas Muller">Thomas Muller</option>
+                                    <input type="submit" value="Update" class="update-button">
+        
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+    </div>
+</body>
+</html>

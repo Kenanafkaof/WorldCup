@@ -52,7 +52,7 @@ input {
     transition: ease-in-out .2s all;
 }
 .search-submit:hover {
-    transform: scale(1.02);
+    background-color: #1391ED;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 

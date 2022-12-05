@@ -50,6 +50,7 @@
 
 .signup {
     padding-top: 2rem;
+    transition: ease-in-out .2s;
 }
 
 a {
@@ -57,7 +58,7 @@ a {
 }
 
 .signup-link:hover {
-    color: #1077C3 !important;
+    color: #49BCE3 !important;
 }
 
 .descriptor {
