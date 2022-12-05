@@ -24,6 +24,11 @@ def create_figure(cups):
     fig.savefig(buf, format="png")
     data = base64.b64encode(buf.getbuffer()).decode("ascii")
     return f"data:image/png;base64,{data}"
+
+@app.route('/')
+def enter():
+    return redirect(url_for('bracket'))
+
 @app.route('/bracket')
 def bracket():
     figure = create_figure(db.get_cups())

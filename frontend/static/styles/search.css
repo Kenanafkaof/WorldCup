@@ -59,9 +59,8 @@ input {
     outline: none;
     font-weight: 600;
     border-radius: 5px;
-    background-image: linear-gradient(to right bottom, #49bce3, #2fabdd, #169ad6, #0489cd, #1077c3);
-    background: -webkit-linear-gradient(right,  #56042C, #1077C3);
-    color: white;
+    background-color: rgba(100, 100, 111, 0.2);
+    color: black;
     transition: ease-in-out .2s all;
 }
 .search-submit:hover {
@@ -71,7 +70,8 @@ input {
 
 .search-bar {
     border-radius: 5px;
-    text-indent: 1rem;
+    text-indent: .2rem;
     outline: none;
     width: 50vmax;
+    border: 2px solid darkgray;
 }
