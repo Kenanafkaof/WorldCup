@@ -18,13 +18,7 @@
     <title>Bracket</title>
 </head>
 <body>
-    <div class="main-title-all" onclick="backHome()">World Cup Predictions</div>
-    <div class="search-wrapper">
-        <form action="/search" method="POST">
-            <input type="text" name="team" class="search-bar" placeholder="Search team...">
-            <input type="submit" class="search-submit" placeholder="Search">
-        </form>
-    </div>
+    {% include 'navbar.html' %}
     <div class="figure-wrapper">
         <img src="{{ figure }}" alt="my plot">
     </div>

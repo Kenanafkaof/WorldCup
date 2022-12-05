@@ -33,45 +33,4 @@ li {
     font-weight: 600;
 }
 
-.search-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding-top: 3rem;
-    width: 100%;
 
-}
-
-input {
-    display: inline-block;
-    border-radius: 0;
-    -webkit-appearance: none;
-    -moz-box-sizing: content-box; /* or `border-box` */
-    -webkit-box-sizing: content-box;
-    box-sizing: content-box;
-    padding: 1rem 2rem 1rem 2rem;
-}
-
-.search-submit {
-    height: 100%;
-    border: none;
-    outline: none;
-    font-weight: 600;
-    border-radius: 5px;
-    background-color: rgba(100, 100, 111, 0.2);
-    color: black;
-    transition: ease-in-out .2s all;
-}
-.search-submit:hover {
-    transform: scale(1.02);
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
-
-.search-bar {
-    border-radius: 5px;
-    text-indent: .2rem;
-    outline: none;
-    width: 50vmax;
-    border: 2px solid darkgray;
-}

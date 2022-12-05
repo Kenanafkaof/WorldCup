@@ -1,0 +1,108 @@
+.navbar-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: column;
+    background-color: #1077C3;
+    flex-wrap: wrap;
+    height: 130px;
+    padding: 1rem;
+    z-index: 999;
+}
+
+.top-left {
+    display: flex;
+    justify-content: left;
+    align-self: stretch;
+    float: left;
+    padding-left: 2rem;
+}
+
+.top-right {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    gap: 1rem;
+}
+
+input {
+    display: inline-block;
+    border-radius: 0;
+    -webkit-appearance: none;
+    -moz-box-sizing: content-box; /* or `border-box` */
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    padding: 1rem 2rem 1rem 2rem;
+}
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 2rem;
+}
+.search-submit {
+    height: 100%;
+    border: none;
+    outline: none;
+    font-weight: 600;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    transition: ease-in-out .2s all;
+}
+.search-submit:hover {
+    transform: scale(1.02);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.search-bar {
+    border-radius: 5px;
+    text-indent: .2rem;
+    outline: none;
+    border: 2px solid darkgray;
+    width: 24vmax;
+}
+
+.top-left-worldcup {
+    height: 100px;
+    cursor: pointer;
+    transition: ease-in-out .3s;
+}
+.top-left-worldcup:hover {
+    transform: scale(1.1);
+}
+a {
+    text-decoration: none !important;
+    color: white;
+    font-weight: 600;
+}
+.login-button {
+    background-image: linear-gradient(to right top, #fec310, #eb8626, #c55034, #912436, #56042c);
+}
+.signup-button {
+    background-image: linear-gradient(to right top, #49bce3, #528fc9, #65629e, #683467, #56042c);
+}
+.logout-button {
+    background-image: linear-gradient(to right top, #49bce3, #00cdcf, #37d696, #a0d54c, #fec310);
+}
+.link {
+    padding: 1rem 2.5rem 1rem 2.5rem;
+    color: white;
+    text-decoration: none !important;
+    border-radius: 5px;
+    border: solid white 1px;
+    transition: .4s all;
+}
+
+.link:hover {
+    transform: scale(1.1);
+}
+a:hover {
+    text-decoration: none;
+    color: white !important;
+}
+a:active {
+    text-decoration: none;
+}
+ 

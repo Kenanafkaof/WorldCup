@@ -16,7 +16,7 @@ def create_figure(cups):
     axis = fig.add_subplot(1, 1, 1)
     xs = [str(team[0]) for team in cups]
     ys = [float(team[1]) for team in cups]
-    axis.scatter(xs, ys)
+    axis.bar(xs, ys)
     axis.set_ylabel('World Cups')
     axis.set_xlabel('Country')
     axis.set_title('Number of World Cups')
@@ -31,8 +31,21 @@ def enter():
 
 @app.route('/bracket')
 def bracket():
-    figure = create_figure(db.get_cups())
-    return render_template("bracket.html", round16=db.show_data(), quarters=db.show_quarters(), semis=db.show_semis(), final=db.show_finals(), modal=False, figure=figure)
+    return render_template("bracket.html", 
+        round16=db.show_data(), 
+        quarters=db.show_quarters(), 
+        semis=db.show_semis(), 
+        final=db.show_finals(), 
+        modal=False, 
+        figure=create_figure(db.get_cups()))
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/signup')
+def signup():
+    return render_template('signup.html')
 
 @app.route("/team" , methods=['GET'])
 def teams():
