@@ -1,7 +1,11 @@
 from module.conversion import Database, Login
 import sqlite3 as sl
 
+<<<<<<< Updated upstream
 #data = Database().create_group()
+=======
+data = Database().parse_world_cups()
+>>>>>>> Stashed changes
 
 def clear_data():
     db = Database()
@@ -11,6 +15,10 @@ def clear_data():
     db.clear_final()
 
 #Database().clear_model()
+<<<<<<< Updated upstream
 #clear_data()
 
 Login().login_create()
+=======
+#clear_data()
+>>>>>>> Stashed changes
