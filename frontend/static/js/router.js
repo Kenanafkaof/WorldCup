@@ -3,6 +3,11 @@ function getStats(team) {
     location.href = url
 }
 
+function getTeam(team) {
+    const url = `http://127.0.0.1:5000/search?team=${team}`
+    location.href = url
+}
+
 function hideModal() {
     $("#standings-modal").removeClass("show")
     $("#standings-modal").addClass("hide")

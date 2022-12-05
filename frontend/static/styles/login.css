@@ -32,6 +32,13 @@
     border-radius: 5px;
 }
 
+.message {
+    padding-top: 1.5rem;
+    font-weight: 600;
+    font-size: 1vmax;
+    color: darkred;
+}
+
 .submit-login {
     background-color: #1077C3;
     border-radius: 5px;

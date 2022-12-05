@@ -23,7 +23,7 @@
     <div class="login-wrapper">
         <h1 class="gradient-title">HELLO!</h1>
         <div class="form-subheader">Make an account with us</div>
-        <form action="/signup">
+        <form action="/create" method="POST">
             <div class="form-login">
                 <span class="descriptor">Email</span>
                 <input type="text" class="username user-input" name="email" placeholder="Email">
@@ -34,6 +34,7 @@
                 <input type="submit" class="submit-login" value="Sign Up">
             </div>
         </form>
+        <div class="message">{{ message }}</div>
         <div class="signup">Or <a href="{{ url_for('login') }}" class="signup-link">Login</a></div>
     </div>
 </body>

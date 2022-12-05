@@ -1,3 +1,4 @@
+from email import message
 import flask
 from flask import Flask, redirect, Response, make_response, render_template, request, session, url_for
 from flask_cors import CORS, cross_origin
@@ -7,9 +8,11 @@ from io import BytesIO
 import base64
 import os, sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from model.module.conversion import Database
+from model.module.conversion import Database, Login
 
 db = Database()
+authentication = Login()
+
 app = Flask(__name__)
 CORS(app)
 def create_figure(cups):
@@ -44,12 +47,38 @@ def bracket():
 def login():
     return render_template('login.html')
 
+@app.route('/authenticate')
+def authenticate():
+    username = request.form.get('username')
+    password = request.form.get('password')
+    validation = authentication.login_authentication(username, password)
+    if validation is True:
+        session['username'] = username
+        return redirect(url_for('.dashboard', username=username)) 
+    if validation is False:
+        return render_template('login.html', message="Invalid credentials")
+
 @app.route('/signup')
 def signup():
     return render_template('signup.html')
 
+@app.route('/create', methods=['POST'])
+def create():
+    username = request.form.get('username')
+    email = request.form.get('email')
+    password = request.form.get('password')
+    validation = authentication.create_user(email, username, password)
+    print(validation)
+    if validation is True:
+        session['username'] = username
+        return redirect(url_for('.dashboard', username=username)) 
+    if validation is False:
+        return render_template('signup.html', message="User already exists")
+
+
 @app.route('/dashboard')
 def dashboard():
+    username = request.args['username']
     return render_template('dashboard.html')
 
 @app.route("/team" , methods=['GET'])

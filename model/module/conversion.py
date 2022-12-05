@@ -248,21 +248,26 @@ class Login:
         self.conn.commit()
 
     def create_user(self, email, username, password):
-        results = self.curs.execute("SELECT * FROM authentication WHERE email = ?", (email,)) 
-        for query_result in results.fetchall() :
-            if email in query_result:
-                return True
-            else:
-                sql = "INSERT INTO authentication (email, username, password) VALUES (?, ?, ?)" 
-                sql_add = (email, username, password)
-                res = self.curs.execute(sql, sql_add)
-                self.conn.commit() 
-                return False
+        sql_query = "SELECT * FROM authentication WHERE email ='%s'" % (email)
+        res = self.curs.execute(sql_query) 
+        result = res.fetchall()  
+        if len(result) == 0:   
+            sql = "INSERT INTO authentication (email, username, password) VALUES (?, ?, ?)" 
+            sql_add = (email, username, password)
+            res = self.curs.execute(sql, sql_add)
+            self.conn.commit() 
+            return True
+        return False
 
     def remove_user(self, email):
         results = self.curs.execute("DELETE FROM authentication WHERE email = ?", (email,)) 
 
 
     def login_authentication(self, username, password):
-        #dfasdf
-        print('something')
+        sql_query = "SELECT * FROM authentication WHERE username ='%s' AND password ='%s'" % (username, password) 
+        res = self.curs.execute(sql_query) 
+        result = res.fetchall()         
+        if len(result) == 0:            
+            return False
+        else:   
+            return True

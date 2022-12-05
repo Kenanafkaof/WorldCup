@@ -23,7 +23,7 @@
     <div class="login-wrapper">
         <h1 class="gradient-title">Welcome back!</h1>
         <div class="form-subheader">Please login</div>
-        <form action="/login">
+        <form action="/authenticate">
             <div class="form-login">
                 <span class="descriptor">Username</span>
                 <input type="text" class="username user-input" name="username" placeholder="John123">
@@ -32,6 +32,7 @@
                 <input type="submit" class="submit-login" value="Login">
             </div>
         </form>
+        <div class="message">{{ message }}</div>
         <div class="signup">Or <a href="{{ url_for('signup') }}" class="signup-link">Sign Up</a></div>
     </div>
 </body>
