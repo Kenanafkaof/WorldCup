@@ -51,7 +51,6 @@ class Database:
     def show_group(self):
         user_list = self.curs.execute("SELECT * FROM groupstage")    #gets all the results from the credentials subsection of the db
         result = user_list.fetchall()
-        print(result)
         return result
 
     def show_data(self):
@@ -247,6 +246,92 @@ class Login:
                     'authentication (`email` text, `username` text, `password` text)')
         self.conn.commit()
 
+    def delete_table(self):
+        sql = "DROP TABLE selectedteam"
+
+        self.curs.execute(sql)
+    
+    def team_create(self):
+        self.curs.execute('DROP TABLE IF EXISTS login')
+        self.curs.execute('CREATE TABLE IF NOT EXISTS '
+                    'selectedteam (`username` text, `team` text, `image` text)')
+        self.conn.commit()
+
+    def player_create(self):
+        self.curs.execute('DROP TABLE IF EXISTS login')
+        self.curs.execute('CREATE TABLE IF NOT EXISTS '
+                    'selectedplayer (`username` text, `player` text, `team` text)')
+        self.conn.commit()
+
+    def flags(self):
+        self.curs.execute('DROP TABLE IF EXISTS login')
+        self.curs.execute('CREATE TABLE IF NOT EXISTS '
+                    'flags (`team` text, `flag` text)')
+        self.conn.commit()
+
+    def get_all_teams(self):
+        user_list = self.curs.execute("SELECT * FROM flags")
+        result = user_list.fetchall()
+        return result
+
+    def get_players(self, team):
+        team_data = self.curs.execute("SELECT * FROM players WHERE team = ?", (team,))
+        result = team_data.fetchall()
+        return result
+
+
+    def validate_team(self, username, team):
+        team_data = self.curs.execute("SELECT * FROM model WHERE winner = ? or loser = ?", (team, team,))
+        result = team_data.fetchall()
+        if len(result) > 0:
+            check_query = self.curs.execute("SELECT * FROM selectedteam WHERE username ='%s'" % (username,))
+            populate = check_query.fetchall()
+            if len(populate) == 0:
+                sql_query = "SELECT * FROM flags WHERE team ='%s'" % (team,)
+                res = self.curs.execute(sql_query) 
+                result = res.fetchall() 
+                home_url = result[0][1]
+                sql = "INSERT INTO selectedteam (username, team, image) VALUES (?, ?, ?)" 
+                sql_add = (username, team, home_url)
+                res = self.curs.execute(sql, sql_add)
+                self.conn.commit() 
+                return home_url
+            elif len(populate) > 0: 
+                sql_query = "SELECT * FROM flags WHERE team ='%s'" % (team,)
+                res = self.curs.execute(sql_query) 
+                result = res.fetchall() 
+                home_url = result[0][1]
+                res = self.curs.execute("UPDATE selectedteam SET username = (?), team = (?), image = (?) WHERE username = (?)", (username, team, home_url, username))
+                self.conn.commit() 
+                return home_url
+        return False
+
+    def update_player(self, username, player, team):
+        check_query = self.curs.execute("SELECT * FROM selectedplayer WHERE username ='%s'" % (username,))
+        populate = check_query.fetchall()
+        if len(populate) == 0:
+            sql = "INSERT INTO selectedplayer (username, player, team) VALUES (?, ?, ?)" 
+            sql_add = (username, player, team)
+            res = self.curs.execute(sql, sql_add)
+            self.conn.commit() 
+        elif len(populate) > 0: 
+            res = self.curs.execute("UPDATE selectedplayer SET username = (?), player = (?) WHERE username = (?)", (username, player, username))
+            self.conn.commit() 
+
+    def get_user_team(self, username):
+        team_data = self.curs.execute("SELECT * FROM selectedteam WHERE username = ?", (username,))
+        result = team_data.fetchall()
+        if len(result) > 0:
+            return result
+        return False
+
+    def get_user_player(self, username):
+        team_data = self.curs.execute("SELECT * FROM selectedplayer WHERE username = ?", (username,))
+        result = team_data.fetchall()
+        if len(result) > 0:
+            return result
+        return False
+
     def create_user(self, email, username, password):
         sql_query = "SELECT * FROM authentication WHERE email ='%s'" % (email)
         res = self.curs.execute(sql_query) 
@@ -262,12 +347,21 @@ class Login:
     def remove_user(self, email):
         results = self.curs.execute("DELETE FROM authentication WHERE email = ?", (email,)) 
 
-
     def login_authentication(self, username, password):
         sql_query = "SELECT * FROM authentication WHERE username ='%s' AND password ='%s'" % (username, password) 
         res = self.curs.execute(sql_query) 
-        result = res.fetchall()         
+        result = res.fetchall() 
+        print(username, password)        
         if len(result) == 0:            
             return False
         else:   
             return True
+
+    def convert_json(self):
+        with open("dependencies/flags.json") as data:
+            data = json.load(data)
+            for country in data:
+                sql = "INSERT INTO flags (team, flag) VALUES (?, ?)" 
+                sql_add = (country['country'], country['image'])
+                res = self.curs.execute(sql, sql_add)
+                self.conn.commit() 

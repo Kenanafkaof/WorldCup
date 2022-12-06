@@ -18,3 +18,7 @@ function backHome() {
     location.href = url
 }
 
+function getProfile(){
+    const url = "http://127.0.0.1:5000/dashboard"
+    location.href = url
+}
