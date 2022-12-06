@@ -13,4 +13,5 @@ def clear_data():
 #Database().clear_model()
 #clear_data()
 
-Login().login_create()
+Login().flags()
+Login().convert_json()

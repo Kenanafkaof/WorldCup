@@ -47,7 +47,7 @@ def bracket():
 def login():
     return render_template('login.html')
 
-@app.route('/authenticate')
+@app.route('/authenticate', methods=['POST'])
 def authenticate():
     username = request.form.get('username')
     password = request.form.get('password')
@@ -68,18 +68,29 @@ def create():
     email = request.form.get('email')
     password = request.form.get('password')
     validation = authentication.create_user(email, username, password)
-    print(validation)
     if validation is True:
         session['username'] = username
-        return redirect(url_for('.dashboard', username=username)) 
+        return redirect(url_for('.dashboard', username=username, email=email)) 
     if validation is False:
         return render_template('signup.html', message="User already exists")
 
 
+@app.route('/updateteam', methods=['POST'])
+def updateteam():
+    username = request.form.get('username')
+    team = request.form.get('team')
+    print(username, team)
+    team_update = authentication.validate_team(username, team)
+    return render_template('dashboard.html', username=username, team=authentication.get_user_team(username))
+
 @app.route('/dashboard')
 def dashboard():
-    username = request.args['username']
-    return render_template('dashboard.html')
+    if 'username' in session:
+        loggedIn = True
+        username = request.args['username']
+        return render_template('dashboard.html', username=username, check=loggedIn, team=authentication.get_user_team(username))
+    else:
+        return render_template('login.html')
 
 @app.route("/team" , methods=['GET'])
 def teams():
@@ -149,6 +160,13 @@ def search():
     else:
         return render_template("error.html")
 
+@app.route('/logout', methods=['POST'])
+def logout():
+    if 'username' in session:
+        session.pop('username', None)
+        return redirect(url_for('.bracket', check = False)) 
+    else:
+        return render_template('login.html')
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)
     app.run(debug=True)

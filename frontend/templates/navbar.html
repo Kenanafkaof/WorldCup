@@ -30,9 +30,18 @@
             
         </div>
         <div class="top-right">
-                <a href="{{ url_for('login') }}" class="login-button link">Login</a>
-                <a href="{{ url_for('signup') }}" class="signup-button link">Sign Up</a>
-                <a href="{{ url_for('bracket') }}" class="logout-button link">Logout</a>
+                {% if check %}
+                <div class="profile">
+                    Welcome, <span class="user">{{ username }}</span>
+                </div>
+                <form action="/logout" method="POST">
+                    <input type="submit" class="logout-button link" value="Logout"></a>
+                </form>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="login-button link">Login</a>
+                    <a href="{{ url_for('signup') }}" class="signup-button link">Sign Up</a>
+                    
+                {% endif %}
         </div>
     </div>
 </body>

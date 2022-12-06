@@ -17,16 +17,19 @@
     {% include 'navbar.html' %}
     <div class="dashboard-wrapper">
         <div class="dashboard-title">
-            <h1 class="gradient-title">Welcome USER!</h1>
+            <h1 class="gradient-title">Welcome {{ username }}!</h1>
         </div>
         <div class="client-wrapper">
+            {% if not team %}
+            {% else %}
             <div class="user">
-                <div class="user-details" team-data="Brazil" onclick="getTeam('Brazil')">
-                        <img src="./static/assets/BR.png" alt="flag" class="country-flag">
+                <div class="user-details" team-data="{{ team[0][1] }}" onclick="getTeam('{{ team[0][1] }}')">
+                        <img src="./static/assets/{{ team[0][2] }}.png" alt="flag" class="country-flag">
                     <div class="center-team">
-                        <h2 class="favorite-team">You think <span class="team">Brazil</span> will win!</h2>
+                        <h2 class="favorite-team">You think <span class="team">{{ team[0][1] }}</span> will win!</h2>
                     </div>
                 </div>
+            {% endif %}
                 <div class="user-player" team-data="Germany" onclick="getTeam('Germany')">
                     <img src="./static/assets/players.jpeg" alt="player" class="players-image">
                     <div class="center-player">
@@ -38,13 +41,18 @@
                 </div>
             </div>
             <div class="update-information">
+                {% if not team %}
+                <h2 class="update">Add Information</h2>
+                {% else %}
                 <h2 class="update">Update Information?</h2>
+                {% endif %}
                 <div class="user-forms">
                     <div class="team-form">
                         <div class="form-subheader">Change Teams?</div>
-                        <form action="/updateteam">
+                        <form action="/updateteam" method="POST">
                             <div class="form-update">
-                                <input type="text" placeholder="Change team" class="change-team user-input">
+                                <input type="hidden" name="username" value="{{ username }}">
+                                <input type="text" name="team" placeholder="Change team" class="change-team user-input">
                                 <input type="submit" value="Update" class="update-button">
                             </div>
                         </form>
@@ -53,6 +61,7 @@
                     <div class="player-form">
                         <div class="form-subheader">Change Player?</div>
                         <form action="/updateteam">
+                            <input type="hidden" name="username" value="{{ username }}">
                             <div class="player-update">
                                 <select name="player-update" id="player-change">
                                     <option value="Thomas Muller">Thomas Muller</option>
