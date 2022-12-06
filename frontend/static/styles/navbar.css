@@ -117,6 +117,7 @@ a:active {
     justify-content: center;
     align-items: center;
     gap: .5rem;
+    cursor: pointer;
 }
 .user {
     font-size: 1.4vmax;

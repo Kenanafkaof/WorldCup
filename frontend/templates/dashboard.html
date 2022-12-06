@@ -30,18 +30,21 @@
                     </div>
                 </div>
             {% endif %}
+            {% if not player %}
+            {% else %}
                 <div class="user-player" team-data="Germany" onclick="getTeam('Germany')">
                     <img src="./static/assets/players.jpeg" alt="player" class="players-image">
                     <div class="center-player">
                         <h2 class="favorite-player">
                             Your favorite player<br>
-                            <span class="player">Tomas Muller</span>
+                            <span class="player">{{ player[0][1] }}</span>
                         </h2>
                     </div>
                 </div>
+            {% endif %}
             </div>
             <div class="update-information">
-                {% if not team %}
+                {% if not team or player %}
                 <h2 class="update">Add Information</h2>
                 {% else %}
                 <h2 class="update">Update Information?</h2>
@@ -52,7 +55,11 @@
                         <form action="/updateteam" method="POST">
                             <div class="form-update">
                                 <input type="hidden" name="username" value="{{ username }}">
-                                <input type="text" name="team" placeholder="Change team" class="change-team user-input">
+                                <select name="team" id="country-change">
+                                    {% for country in countries %}
+                                        <option value="{{ country[0] }}" name="team">{{ country[0] }}</option>
+                                    {% endfor %}
+                                </select>
                                 <input type="submit" value="Update" class="update-button">
                             </div>
                         </form>
@@ -60,16 +67,32 @@
                    
                     <div class="player-form">
                         <div class="form-subheader">Change Player?</div>
-                        <form action="/updateteam">
+                        <form action="/getplayers" method="POST">
                             <input type="hidden" name="username" value="{{ username }}">
                             <div class="player-update">
-                                <select name="player-update" id="player-change">
-                                    <option value="Thomas Muller">Thomas Muller</option>
-                                    <input type="submit" value="Update" class="update-button">
-        
+                                <select name="team" id="country-change">
+                                    {% for country in countries %}
+                                        <option value="{{ country[0] }}">{{ country[0] }}</option>
+                                    {% endfor %}
+                                    <input type="submit" value="Get Players" class="update-button">
                                 </select>
                             </div>
                         </form>
+                        {% if show %}
+                        <br>
+                            <form action="/updateplayer" method="POST">
+                                <input type="hidden" name="username" value="{{ username }}">
+                                <input type="hidden" name="team" value="{{ selected_team }}">
+                                <div class="player-update">
+                                    <select name="player" id="country-change">
+                                        {% for player in players %}
+                                            <option value="{{ player[1] }}">{{ player[1] }}</option>
+                                        {% endfor %}
+                                        <input type="submit" value="Update" class="update-button">
+                                    </select>
+                                </div>
+                            </form>
+                        {% endif %}
                     </div>
                     
                 </div>

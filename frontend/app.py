@@ -35,13 +35,24 @@ def enter():
 
 @app.route('/bracket')
 def bracket():
-    return render_template("bracket.html", 
-        round16=db.show_data(), 
-        quarters=db.show_quarters(), 
-        semis=db.show_semis(), 
-        final=db.show_finals(), 
-        modal=False, 
-        figure=create_figure(db.get_cups()))
+    if 'username' in session:
+        return render_template("bracket.html", 
+            round16=db.show_data(), 
+            quarters=db.show_quarters(), 
+            semis=db.show_semis(), 
+            final=db.show_finals(), 
+            modal=False, 
+            username=session['username'],
+            check=True,
+            figure=create_figure(db.get_cups()))
+    else:
+        return render_template("bracket.html", 
+            round16=db.show_data(), 
+            quarters=db.show_quarters(), 
+            semis=db.show_semis(), 
+            final=db.show_finals(), 
+            modal=False, 
+            figure=create_figure(db.get_cups()))
 
 @app.route('/login')
 def login():
@@ -77,27 +88,92 @@ def create():
 
 @app.route('/updateteam', methods=['POST'])
 def updateteam():
-    username = request.form.get('username')
-    team = request.form.get('team')
-    print(username, team)
-    team_update = authentication.validate_team(username, team)
-    return render_template('dashboard.html', username=username, team=authentication.get_user_team(username))
+    if 'username' in session:
+        loggedIn = True
+        username = request.form.get('username')
+        team = request.form.get('team')
+        team_update = authentication.validate_team(username, team)
+        return render_template('dashboard.html', 
+            username=username, 
+            team=authentication.get_user_team(username), 
+            player=authentication.get_user_player(username), 
+            countries=authentication.get_all_teams(),
+            check=loggedIn)
+    else:
+        return render_template('login.html')
 
+@app.route('/updateplayer', methods=['POST'])
+def updateplayer():
+    if 'username' in session:
+        loggedIn = True
+        username = request.form.get('username')
+        team = request.form.get('team')
+        player = request.form.get('player')
+        team_update = authentication.update_player(username, player, team)
+        return render_template('dashboard.html', 
+            username=username, 
+            team=authentication.get_user_team(username),
+            player=authentication.get_user_player(username), 
+            countries=authentication.get_all_teams(),
+            check=loggedIn)
+    else:
+        return render_template('login.html')
+
+@app.route('/getplayers', methods=['POST'])
+def getplayers():
+    if 'username' in session:
+        username = session['username']
+        loggedIn = True
+        team = request.form.get('team')
+        return render_template('dashboard.html', 
+            username=username, 
+            team=authentication.get_user_team(username), 
+            player=authentication.get_user_player(username), 
+            countries=authentication.get_all_teams(),
+            check=loggedIn,
+            players = authentication.get_players(team),
+            show=True,
+            selected_team=team
+        )
+    else:
+        return render_template('login.html') 
 @app.route('/dashboard')
 def dashboard():
     if 'username' in session:
         loggedIn = True
-        username = request.args['username']
-        return render_template('dashboard.html', username=username, check=loggedIn, team=authentication.get_user_team(username))
+        username = session['username']
+        player=authentication.get_user_player(username), 
+        print(player)
+        return render_template('dashboard.html', 
+            username=username, 
+            check=loggedIn, 
+            team=authentication.get_user_team(username),
+            player=authentication.get_user_player(username), 
+            countries=authentication.get_all_teams()
+        )
     else:
         return render_template('login.html')
 
 @app.route("/team" , methods=['GET'])
 def teams():
-    figure = create_figure(db.get_cups())
-    args = request.args
-    team = args.get('t')
-    return render_template("bracket.html", round16=db.show_data(), quarters=db.show_quarters(), semis=db.show_semis(), final=db.show_finals(), team_data = db.get_victories(team), loss_data=db.get_losses(team), modal=True, team=team, figure=figure)
+    if 'username' in session:
+        figure = create_figure(db.get_cups())
+        args = request.args
+        team = args.get('t')
+        return render_template("bracket.html", 
+            round16=db.show_data(), 
+            quarters=db.show_quarters(), 
+            semis=db.show_semis(), 
+            final=db.show_finals(), 
+            team_data = db.get_victories(team), 
+            loss_data=db.get_losses(team), 
+            modal=True, team=team, 
+            figure=figure,
+            check=True,
+            username=session['username']
+        )
+    else:
+        return render_template("bracket.html", round16=db.show_data(), quarters=db.show_quarters(), semis=db.show_semis(), final=db.show_finals(), team_data = db.get_victories(team), loss_data=db.get_losses(team), modal=True, team=team, figure=figure)
 
 @app.route("/search" , methods=['GET', 'POST'])
 def search():
@@ -138,25 +214,40 @@ def search():
         fig.savefig(buf, format="png")
         data = base64.b64encode(buf.getbuffer()).decode("ascii")
         return f"data:image/png;base64,{data}"
-    def render_data():
+        
+    if valid is True:
         team_data = db.get_victories(team), 
         loss_data=db.get_losses(team)
         data = combine(team_data, loss_data)
         figure = create_figure(data)
-        return render_template("team.html", 
-            round16=db.show_data(), 
-            quarters=db.show_quarters(), 
-            semis=db.show_semis(), 
-            final=db.show_finals(), 
-            team_data = db.get_victories(team), 
-            loss_data=loss_data, 
-            players=db.get_team(team), 
-            team=team, 
-            ranking=db.get_standing(team),
-            figure = figure
-        )
-    if valid is True:
-        render_data()
+        if 'username' in session:
+            return render_template("team.html", 
+                round16=db.show_data(), 
+                quarters=db.show_quarters(), 
+                semis=db.show_semis(), 
+                final=db.show_finals(), 
+                team_data = db.get_victories(team), 
+                loss_data=loss_data, 
+                players=db.get_team(team), 
+                team=team, 
+                ranking=db.get_standing(team),
+                figure = figure,
+                check=True,
+                username=session['username']
+            )
+        else:
+            return render_template("team.html", 
+                round16=db.show_data(), 
+                quarters=db.show_quarters(), 
+                semis=db.show_semis(), 
+                final=db.show_finals(), 
+                team_data = db.get_victories(team), 
+                loss_data=loss_data, 
+                players=db.get_team(team), 
+                team=team, 
+                ranking=db.get_standing(team),
+                figure = figure
+            )
     else:
         return render_template("error.html")
 
