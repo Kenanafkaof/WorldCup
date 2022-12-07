@@ -3,7 +3,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from scipy.stats import linregress
-from module.conversion import Database
+from model.module.conversion import Database
 from warnings import simplefilter
 simplefilter(action="ignore", category=pd.errors.PerformanceWarning)
 
@@ -14,7 +14,7 @@ class HistoricData:
 
     def get_data(self):
         #passing in the fifa world cup results csv to be read via the pandas dataframe 
-        results = pd.read_csv('dependencies/results.csv')
+        results = pd.read_csv('model/dependencies/results.csv')
         results.head()
 
         #iteration in order to create home and away team for fixtures as well as points 
@@ -79,8 +79,8 @@ class HistoricData:
 
     def get_fixtures(self, final):
         #next, digesting the fixtures into the model based on the initial fixtures as well as the addition of the individual rankings of the team 
-        fixtures = pd.read_csv('dependencies/fixtures.csv')
-        ranking = pd.read_csv('dependencies/fifa_rankings.csv', encoding = 'latin-1')           #needed different encoding in order to parse this file 
+        fixtures = pd.read_csv('model/dependencies/fixtures.csv')
+        ranking = pd.read_csv('model/dependencies/fifa_rankings.csv', encoding = 'latin-1')           #needed different encoding in order to parse this file 
         pred_set = []
 
         fixtures.insert(1, 'first_position', fixtures['Home Team'].map(ranking.set_index('Team')['Position']))      #insert into the df the first and second -> based on score put the corresponding position 
@@ -156,12 +156,13 @@ class HistoricData:
         return group_finals
 
     def clean_and_predict(self, matches, final, logreg): 
-        ranking = pd.read_csv('dependencies/fifa_rankings.csv', encoding = 'latin-1')  
+        ranking = pd.read_csv('model/dependencies/fifa_rankings.csv', encoding = 'latin-1')  
         ranking.set_index('Team')['Position']
         new_set = pd.DataFrame(ranking)
-        #Initialization of auxiliary list for data cleaning
+        #new list for the cleaning of the predictions 
         positions = []
 
+        #appends the data based on the position -> set the win/lose 
         for match in matches:
             positions.append(new_set[new_set['Team']==match[0]].squeeze()['Position'])
             positions.append(new_set[new_set['Team']==match[1]].squeeze()['Position'])
@@ -169,14 +170,13 @@ class HistoricData:
         for row in matches:
             positions.append
 
-        #Creating the DataFrame for prediction
+        #creates a new df for the prediction set which was cleaned 
         pred_set = []
 
-        #initalizaing iterators for while loop
+        #iterates over with i 
         i = 0
         j = 0
 
-        # 'i' will be the iterator for the 'position' list, and 'j' for the list of matches (list of tuples)
 
         while i < len(positions):
             dict1 = {}
@@ -192,26 +192,24 @@ class HistoricData:
             i += 2
             j += 1
 
-        #Covert list into DataFrame
+        #creates a new df with the iterated data 
         pred_set = pd.DataFrame(pred_set)
         backup_pred_set = pred_set
 
-        #Get dummy variables and drop winning_team column
         pred_set = pd.get_dummies(pred_set, prefix = ['home_team', 'away_team'], columns = ['home_team', 'away_team'])
 
-        #Add missing columns compared to the model's training dataset
         missing_cols2 = set(final.columns) - set(pred_set.columns)
         for c in missing_cols2:
             pred_set[c] = 0
         pred_set = pred_set[final.columns]
 
-        #Remove winning team column
         pred_set = pred_set.drop(['winning_team'], axis=1)
 
-        #Prediction
+        #sets the new predictions based on the df for the winning team which has 2 equivalent points
         predictions = logreg.predict(pred_set)
         winners = []
         
+        #same prediction iteration as other function -> once data is returned, then clean until reaches the finals
         for i in range(len(pred_set)):
             print(backup_pred_set.iloc[i,1] + ' and ' + backup_pred_set.iloc[i,0])
             if predictions[i] == 2:

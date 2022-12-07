@@ -4,7 +4,7 @@ import csv
 
 class GetTeams:
     def __init__(self, file_param):
-        self.file = f"dependencies/{file_param}"
+        self.file = f"model/dependencies/{file_param}"
 
     def parse_data(self):
         columns = defaultdict(list)

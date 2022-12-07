@@ -108,10 +108,27 @@ class Database:
                     'cups (`team` text, `count` text)')
         self.conn.commit()
 
+    def create_main(self):
+        self.curs.execute('DROP TABLE IF EXISTS round16')
+        self.curs.execute('CREATE TABLE IF NOT EXISTS '
+                    'model (`winner` text, `winnerprobaility` text, `winnerimage` text, `loser` text, `loserprobability` text, `loserimage` text)')
+        self.conn.commit()
+
+    def create_players(self):
+        self.curs.execute('DROP TABLE IF EXISTS players')
+        self.curs.execute('CREATE TABLE IF NOT EXISTS '
+                    'players (`team` text, `player` text, `position` text)')
+        self.conn.commit()
+
+    def create_rankings(self):
+        self.curs.execute('DROP TABLE IF EXISTS rankings')
+        self.curs.execute('CREATE TABLE IF NOT EXISTS '
+                    'rankings (`team` text, `position` text)')
+        self.conn.commit()
     #showing work -> how were the files/csvs converted into the db 
 
     def convert_intial(self):
-        with open("dependencies/flags.json") as data:
+        with open("model/model/dependencies/flags.json") as data:
             data = json.load(data)
             j = 0 
             k = 0
@@ -126,7 +143,7 @@ class Database:
         home_url = ''
         away_url = ''
         #opens and iterates through the flags file in order to get the flag for the passed country
-        with open("dependencies/flags.json") as data:
+        with open("model/dependencies/flags.json") as data:
             data = json.load(data)
             for country in data:
                 if country['country'].lower() == home.lower():
@@ -152,7 +169,7 @@ class Database:
         #takes the probability from the model and puts it into the db using the same logic as above with iteration of the flags file
         winner_url = ''
         loser_url = ''
-        with open("dependencies/flags.json") as data:
+        with open("model/dependencies/flags.json") as data:
             data = json.load(data)
             for country in data:
                 if country['country'].lower() == winner.lower():
@@ -203,7 +220,7 @@ class Database:
         return False
 
     def parse_csv(self):
-        with open("dependencies/fifa_rankings.csv", 'r', encoding="utf8") as infile:
+        with open("model/dependencies/fifa_rankings.csv", 'r', encoding="utf8") as infile:
             reader = csv.DictReader(infile)
             #fieldnames = reader.fieldnames
             for row in reader:
@@ -214,7 +231,7 @@ class Database:
                 #print(row)  # e.g. `['foo', 'bar']`
 
     def parse_players(self):
-        with open("dependencies/players.csv", 'r', encoding="utf8") as infile:
+        with open("model/dependencies/players.csv", 'r', encoding="utf8") as infile:
             reader = csv.DictReader(infile)
             for row in reader:
                 squad = row['Squad'].replace("2022 ", "")
@@ -224,7 +241,7 @@ class Database:
                 self.conn.commit()
 
     def parse_world_cups(self):
-        with open("dependencies/WorldCups.csv", 'r', encoding="utf8") as infile:
+        with open("model/dependencies/WorldCups.csv", 'r', encoding="utf8") as infile:
             reader = csv.DictReader(infile)
             world_cup_count = []
             for row in reader:
@@ -402,7 +419,7 @@ class Login:
             return True
 
     def convert_json(self):
-        with open("dependencies/flags.json") as data:
+        with open("model/dependencies/flags.json") as data:
             data = json.load(data)
             for country in data:
                 sql = "INSERT INTO flags (team, flag) VALUES (?, ?)" 

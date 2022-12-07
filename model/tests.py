@@ -1,6 +1,6 @@
-from module.teams import GetTeams
-from module.model import HistoricData
-from module.rankings import GetRankings
+from model.module.teams import GetTeams
+from model.module.model import HistoricData
+from model.module.rankings import GetRankings
 
 
 def main():
