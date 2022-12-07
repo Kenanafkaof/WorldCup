@@ -4,19 +4,19 @@ import csv
 
 class GetRankings:
     def __init__(self) -> None:
+        #nothing to init here, simply scraping data and converting to the fifa_rankings.csv
         pass
 
     def get_page(self):
-        headers = {
-            "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
-        }
-        content = requests.request("GET", "https://us.soccerway.com/teams/rankings/fifa/?ICID=TN_03_05_01", headers=headers)
+        #get the contents from the webpage and validates response
+        content = requests.request("GET", "https://us.soccerway.com/teams/rankings/fifa/?ICID=TN_03_05_01")
         if content.status_code != 200:
             print(content.text)
             return False
         return content
 
     def parse_content(self, response):
+        #finds the corresponding table headers in the html and appends it to a list which can then be returned into a CSV file 
         soup = BeautifulSoup(response.content, 'html.parser')
         rankings = []
         teams = soup.find_all("td", class_="text team")
@@ -28,6 +28,7 @@ class GetRankings:
         return rankings
 
     def write_file(self, rankings):
+        #parsing into the CSV file 
         header = ['Position', 'Team', 'Points']
         with open('dependencies/fifa_rankings.csv', 'w', newline='') as outcsv:
             writer = csv.writer(outcsv, delimiter=',')

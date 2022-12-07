@@ -156,10 +156,9 @@ def dashboard():
 
 @app.route("/team" , methods=['GET'])
 def teams():
+    team = request.args.get('t')
+    figure = create_figure(db.get_cups())
     if 'username' in session:
-        figure = create_figure(db.get_cups())
-        args = request.args
-        team = args.get('t')
         return render_template("bracket.html", 
             round16=db.show_data(), 
             quarters=db.show_quarters(), 
@@ -167,13 +166,23 @@ def teams():
             final=db.show_finals(), 
             team_data = db.get_victories(team), 
             loss_data=db.get_losses(team), 
-            modal=True, team=team, 
+            modal=True, 
+            team=team, 
             figure=figure,
             check=True,
             username=session['username']
         )
     else:
-        return render_template("bracket.html", round16=db.show_data(), quarters=db.show_quarters(), semis=db.show_semis(), final=db.show_finals(), team_data = db.get_victories(team), loss_data=db.get_losses(team), modal=True, team=team, figure=figure)
+        return render_template("bracket.html", 
+            round16=db.show_data(), 
+            quarters=db.show_quarters(), 
+            semis=db.show_semis(), 
+            final=db.show_finals(), 
+            team_data = db.get_victories(team), 
+            loss_data=db.get_losses(team), 
+            modal=True, 
+            team=team, 
+            figure=figure)
 
 @app.route("/search" , methods=['GET', 'POST'])
 def search():
@@ -258,6 +267,9 @@ def logout():
         return redirect(url_for('.bracket', check = False)) 
     else:
         return render_template('login.html')
+
+
+
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)
     app.run(debug=True)
