@@ -109,18 +109,24 @@ a:active {
 
 
 .profile {
-    font-size: 1vmax;
+    font-size: 25px;
     color: white;
     font-weight: 600;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: .5rem;
     cursor: pointer;
+    padding-right: 1rem;
+    transition: .2s ease-in-out;
 }
+.profile:hover {
+    transform: scale(1.10);
+}
+
 .user {
-    font-size: 1.4vmax;
+    font-size: 1.1vmax;
     background: -webkit-linear-gradient(right,  #49bce3, #00cdcf, #37d696, #a0d54c, #fec310);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

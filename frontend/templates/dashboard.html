@@ -36,7 +36,7 @@
                     <img src="./static/assets/players.jpeg" alt="player" class="players-image">
                     <div class="center-player">
                         <h2 class="favorite-player">
-                            Your favorite player<br>
+                            Your favorite player
                             <span class="player">{{ player[0][1] }}</span>
                         </h2>
                     </div>
@@ -71,6 +71,9 @@
                             <input type="hidden" name="username" value="{{ username }}">
                             <div class="player-update">
                                 <select name="team" id="country-change">
+                                    {% if show %}
+                                    <option value="none" selected disabled hidden>{{ selected_team }}</option>
+                                    {% endif %}
                                     {% for country in countries %}
                                         <option value="{{ country[0] }}">{{ country[0] }}</option>
                                     {% endfor %}

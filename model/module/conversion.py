@@ -346,12 +346,18 @@ class Login:
 
     def remove_user(self, email):
         results = self.curs.execute("DELETE FROM authentication WHERE email = ?", (email,)) 
+        self.conn.commit() 
 
+    def show_users(self):
+        sql_query = "SELECT * FROM authentication" 
+        res = self.curs.execute(sql_query) 
+        result = res.fetchall() 
+        print(result)
+    
     def login_authentication(self, username, password):
         sql_query = "SELECT * FROM authentication WHERE username ='%s' AND password ='%s'" % (username, password) 
         res = self.curs.execute(sql_query) 
         result = res.fetchall() 
-        print(username, password)        
         if len(result) == 0:            
             return False
         else:   

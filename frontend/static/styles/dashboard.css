@@ -73,7 +73,7 @@
 }
 select {
     width: 23vmax;
-    height: 3vmax;
+    height: 2.5vmax;
     text-indent: 1rem;
     font-weight: 600;
     cursor: pointer;
@@ -106,11 +106,13 @@ select {
     font-size: 1.5vmax;
     color: white;
     width: 100%;
+    font-weight: 800;
 }
 .favorite-player {
-    text-align: left;
     font-size: 1.2vmax;
     color: white;
+    font-weight: 800;
+    width: 100%;
 }
 .country-flag {
     filter: brightness(.4);
@@ -139,13 +141,6 @@ select {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    text-align: center;
 }
 .team {
     font-size: 2vmax;
@@ -161,3 +156,4 @@ select {
     -webkit-text-fill-color: transparent;
     text-transform: uppercase;
 }
+

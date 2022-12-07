@@ -10,8 +10,5 @@ def clear_data():
     db.clear_semis()
     db.clear_final()
 
-#Database().clear_model()
-#clear_data()
-
-Login().flags()
-Login().convert_json()
+#Login().remove_user("fake")
+#Login().show_users()
