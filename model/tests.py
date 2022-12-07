@@ -1,6 +1,8 @@
 from module.teams import GetTeams
 from module.model import HistoricData
 from module.rankings import GetRankings
+
+
 def main():
     teams = GetTeams("teams-2022.csv")
     data = teams.parse_data()
