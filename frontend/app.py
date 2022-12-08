@@ -6,6 +6,7 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 from io import BytesIO
 import base64
+from werkzeug.exceptions import HTTPException
 import os, sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from model.module.conversion import Database, Login
@@ -16,6 +17,15 @@ authentication = Login()
 
 app = Flask(__name__)
 CORS(app) #uses CORS for js queries 
+
+#configure a global event error handler
+
+@app.errorhandler(Exception)
+def handle_error(error):
+    code = 500
+    if isinstance(error, HTTPException):
+        code = error.code
+    return render_template('error.html')
 
 #universal function to create the figure based on the amount of cups
 def create_figure(cups):

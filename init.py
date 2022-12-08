@@ -1,3 +1,9 @@
+# Kenan Korn, kmkorn@usc.edu
+# ITP 216, Fall 2022
+# Section: 32080
+# Assignment Final Project
+# Description: Flask application which uses Machine Learning in order to predict Fifa World Cup matches 
+
 from model.module.conversion import Database, Login
 from model.tests import model
 
